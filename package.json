@@ -1,0 +1,21 @@
+{
+  "scripts": {
+    "build": "bun build ./src/index.ts --outdir ./dist",
+    "dev": "bun --watch ./src/index.ts"
+  },
+  "dependencies": {
+    "@openrouter/sdk": "^0.12.20",
+    "zod": "^4.3.6"
+  },
+  "name": "plutonium",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "playwright": "^1.59.1"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
