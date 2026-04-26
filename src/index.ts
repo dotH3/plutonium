@@ -2,9 +2,7 @@ import { queryLLM } from "./modules/llm";
 import { chromium } from 'playwright';
 import { ProductosResponseSchema } from './modules/schema';
 
-// const url = 'https://saas.ecomenuapp.com/tienda/clubsocial';
-const url = 'https://menu.fu.do/picnicbariloche'
-
+const url = ''
 const SYSTEM_PROMPT = `Eres un extractor de datos especializado en menús de restaurantes.
 Analiza el texto proporcionado y extrae los productos con sus precios.
 Responde ÚNICAMENTE con un JSON válido y nada más: un array de objetos con formato [{"nombre": "string", "precio": number}].

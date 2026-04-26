@@ -25,13 +25,20 @@ async function getModelPricing(modelId: string) {
 }
 
 export const queryLLM = async (userPrompt: string, systemPrompt?: string) => {
-    const modelId = 'google/gemma-4-26b-a4b-it';
+    // const modelId = 'google/gemma-4-26b-a4b-it';
+    const modelId = 'google/gemini-2.5-flash'
+    const startTime = performance.now();
+    console.log(`[queryLLM] Launching query...`);
 
     const messages: Array<{ role: string; content: string }> = [];
     if (systemPrompt) {
         messages.push({ role: 'system', content: systemPrompt });
     }
     messages.push({ role: 'user', content: userPrompt });
+
+    const payloadSize = new Blob([JSON.stringify(messages)]).size;
+    const payloadKB = (payloadSize / 1024).toFixed(2);
+    console.log(`[queryLLM] Request size: ${payloadKB} KB`);
 
     const completion = await openRouter.chat.send({
         chatRequest: {
@@ -40,6 +47,8 @@ export const queryLLM = async (userPrompt: string, systemPrompt?: string) => {
             stream: false,
         },
     });
+    const elapsed = (performance.now() - startTime) / 1000;
+    console.log(`[queryLLM] Response received in ${elapsed.toFixed(2)}s`);
 
     const pricing = await getModelPricing(modelId);
     const promptTokens = completion.usage?.promptTokens ?? 0;
