@@ -1,10 +1,12 @@
 {
   "scripts": {
-    "build": "bun build ./src/index.ts --outdir ./dist",
-    "dev": "bun --watch ./src/index.ts"
+    "build": "bun build ./src/server.ts --outdir ./dist --target=bun",
+    "dev": "bun --watch ./src/server.ts"
   },
   "dependencies": {
+    "@fastify/cors": "^11.2.0",
     "@openrouter/sdk": "^0.12.20",
+    "fastify": "^5.8.5",
     "zod": "^4.3.6"
   },
   "name": "plutonium",
